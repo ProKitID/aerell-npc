@@ -1,0 +1,32 @@
+{
+  "name": "Aerell NPC add-on",
+  "version": "0.0.1",
+  "productName": "Aerell: Minecraft NPC addon",
+  "description": "Aerell: Minecraft NPC addon",
+  "private": true,
+  "devDependencies": {
+    "@minecraft/core-build-tasks": "^5.5.0",
+    "eslint-plugin-minecraft-linting": "^2.0.10",
+    "source-map": "^0.7.4",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.6.2"
+  },
+  "scripts": {
+    "lint": "just-scripts lint",
+    "build": "just-scripts build",
+    "clean": "just-scripts clean",
+    "local-deploy": "just-scripts local-deploy",
+    "mcaddon": "just-scripts mcaddon"
+  },
+  "dependencies": {
+    "@minecraft/math": "^2.2.11",
+    "@minecraft/server": "^2.3.0",
+    "@minecraft/server-ui": "^2.0.0",
+    "@minecraft/vanilla-data": "^1.21.123"
+  },
+  "overrides": {
+    "@minecraft/math": {
+      "@minecraft/server": "$@minecraft/server"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+    "identifier": "prokitid:player_head"
+    },
+    "tags": [ "crafting_table" ],
+    "pattern": [
+      "AAA",
+      "BCB",
+      "BBB"
+    ],
+    "key": {
+      "A": {
+        "item": "minecraft:black_wool"
+      },
+      "B": {
+        "item": "minecraft:brown_wool"
+      },
+      "C": {
+        "item": "minecraft:curved_pumpkin"
+      }
+    },
+	"unlock": [
+    {
+        "item": "minecraft:carved_pumpkin"
+    },
+    {
+        "item": "minecraft:black_wool"
+    },
+    {
+        "item": "minecraft:brown_wool"
+    }
+    ],
+    "result": {
+      "item": "minecraft:player_head",
+      "count": 1
+    }
+  }
+}
