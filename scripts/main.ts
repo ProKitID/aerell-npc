@@ -6,6 +6,7 @@ import {
     CustomCommandOrigin,
     CustomCommandStatus,
     Player,
+    GameMode,
     system,
     Dimension,
     world,
@@ -101,7 +102,7 @@ world.afterEvents.playerPlaceBlock.subscribe(({ block, dimension, player }) => {
         (dim: Dimension, pos: { x: number, y: number, z: number }, player: any) => {
             const poske: { dimension: Dimension, x: number, y: number, z: number } = { dimension: dim, x: pos.x, y: pos.y, z: pos.z };
             
-            const stepe = spawnSimulatedPlayer(poske,"stepe","Survival");
+            const stepe = spawnSimulatedPlayer(poske,"stepe",GameMode.Survival);
             stepe.chat("P");
             //dimension.spawnEntity(NPC_ENTITY_TYPE_ID, pos);
         }
