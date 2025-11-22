@@ -98,7 +98,7 @@ world.afterEvents.playerPlaceBlock.subscribe(({ block, dimension, player }) => {
             ["d"],
             ["p"]
         ],
-        (dimension: Dimension, pos: { x: number, y: number, z: number }, player: Player) => {
+        (dim: Dimension, pos: { x: number, y: number, z: number }, player: Player) => {
             const poske: { dimension: Dimension, x: number, y: number, z: number } = { dimension: dim, x: pos.x, y: pos.y, z: pos.z };
             
             const stepe = spawnSimulatedPlayer(poske,"stepe","Survival");
@@ -106,5 +106,5 @@ world.afterEvents.playerPlaceBlock.subscribe(({ block, dimension, player }) => {
             //dimension.spawnEntity(NPC_ENTITY_TYPE_ID, pos);
         }
     );
-    detector.detectStructure(dimension, block, player);
+    detector.detectStructure(dimension, block);
 });
