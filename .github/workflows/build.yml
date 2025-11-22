@@ -3,7 +3,7 @@ name: Ci-Build
 on:
   push:
     tags:
-      - v*
+      - r/*
   workflow_dispatch:
 
 jobs:
