@@ -7,7 +7,7 @@ import { system, Dimension, Block, Player, type Vector3 } from "@minecraft/serve
 export type Pattern3D = string[][]; // 3D: [y][z][x]
 export type PatternTypes = Record<string, string>; // "A": "minecraft:stone"
 
-export type SummonEntityFn = (dimension: Dimension, origin: Vector3, player?: Player) => void;
+export type SummonEntityFn = (dimension: Dimension, origin: Vector3, player?: any) => void;
 
 interface Offset {
     x: number;
