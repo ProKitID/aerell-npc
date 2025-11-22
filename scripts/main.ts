@@ -98,7 +98,7 @@ world.afterEvents.playerPlaceBlock.subscribe(({ block, dimension, player }) => {
             ["d"],
             ["p"]
         ],
-        (dim: Dimension, pos: { x: number, y: number, z: number }, player: Player) => {
+        (dim: Dimension, pos: { x: number, y: number, z: number }, player: any) => {
             const poske: { dimension: Dimension, x: number, y: number, z: number } = { dimension: dim, x: pos.x, y: pos.y, z: pos.z };
             
             const stepe = spawnSimulatedPlayer(poske,"stepe","Survival");
