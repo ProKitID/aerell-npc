@@ -2,7 +2,7 @@
 Credit{Source}: https://github.com/MinecraftBedrockArabic/Script-API-snippets/blob/main/structure summon detector/structureDetector.js
 */
 
-import { system, Dimension, Block, type Vector3 } from "@minecraft/server";
+import { system, Dimension, Block, Player, type Vector3 } from "@minecraft/server";
 
 export type Pattern3D = string[][]; // 3D: [y][z][x]
 export type PatternTypes = Record<string, string>; // "A": "minecraft:stone"
@@ -20,6 +20,7 @@ interface StateFlag {
 }
 
 class StructureDetector {
+    player: Player;
     patternTypes: PatternTypes;
     basePattern: Pattern3D;
     triggerBlock: string;
@@ -29,10 +30,12 @@ class StructureDetector {
     static instances: StructureDetector[] = [];
 
     constructor(
+        player: Player,
         patternTypes: PatternTypes,
         basePattern: Pattern3D,
         summonEntity: SummonEntityFn
     ) {
+        this.player = player;
         this.patternTypes = patternTypes;
         this.basePattern = basePattern;
         this.triggerBlock = this.patternTypes[Object.keys(this.patternTypes).pop()!]!;
@@ -157,7 +160,7 @@ class StructureDetector {
         state.isDone = true;
 
         yield* this.removeStructureChunkedJob(dimension, origin, pattern);
-        this.summonEntity(dimension, origin);
+        this.summonEntity(dimension, origin, this.player);
     }
 
     private *removeStructureChunkedJob(
