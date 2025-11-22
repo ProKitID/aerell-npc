@@ -7,12 +7,17 @@ import {
     CustomCommandStatus,
     Player,
     system,
+    Dimension,
     world,
 } from '@minecraft/server';
 
 import {
     ActionFormData,
 } from '@minecraft/server-ui';
+
+import {
+    spawnSimulatedPlayer,
+} from '@minecraft/server-gametest';
 
 import StructureDetector from './modules/structureDetector';
 
@@ -80,22 +85,26 @@ world.beforeEvents.playerInteractWithEntity.subscribe((event) => {
     }
 });
 
-const detector = new StructureDetector(
-    {
-        "*": "minecraft:air",
-        "d": "minecraft:dirt",
-        "p": "minecraft:player_head" // the block that trigger the check.
-    },
-    [
-        ["d"],
-        ["d"],
-        ["p"]
-    ],
-    (dimension: { spawnEntity: (arg0: string, arg1: any) => void; }, pos: any) => {
-        dimension.spawnEntity(NPC_ENTITY_TYPE_ID, pos);
-    }
-);
-
-world.afterEvents.playerPlaceBlock.subscribe(({ block, dimension }) => {
-    detector.detectStructure(dimension, block);
+world.afterEvents.playerPlaceBlock.subscribe(({ block, dimension, player }) => {
+    const detector = new StructureDetector(
+        player,
+        {
+            "*": "minecraft:air",
+            "d": "minecraft:dirt",
+            "p": "minecraft:player_head" // the block that trigger the check.
+        },
+        [
+            ["d"],
+            ["d"],
+            ["p"]
+        ],
+        (dimension: Dimension, pos: { x: number, y: number, z: number }, player: Player) => {
+            const poske: { dimension: Dimension, x: number, y: number, z: number } = { dimension: dim, x: pos.x, y: pos.y, z: pos.z };
+            
+            const stepe = spawnSimulatedPlayer(poske,"stepe","Survival");
+            stepe.chat("P");
+            //dimension.spawnEntity(NPC_ENTITY_TYPE_ID, pos);
+        }
+    );
+    detector.detectStructure(dimension, block, player);
 });
